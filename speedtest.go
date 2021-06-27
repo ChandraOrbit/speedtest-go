@@ -99,7 +99,7 @@ func startTest(servers speedtest.Servers, savingMode bool, jsonOutput bool) {
 
 func testDownload(server *speedtest.Server, savingMode bool) error {
 	quit := make(chan bool)
-	fmt.Printf("Download Test: ")
+//	fmt.Printf("Download Test: ")
 	go dots(quit)
 	err := server.DownloadTest(savingMode)
 	quit <- true
@@ -112,7 +112,7 @@ func testDownload(server *speedtest.Server, savingMode bool) error {
 
 func testUpload(server *speedtest.Server, savingMode bool) error {
 	quit := make(chan bool)
-	fmt.Printf("Upload Test: ")
+//	fmt.Printf("Upload Test: ")
 	go dots(quit)
 	err := server.UploadTest(savingMode)
 	quit <- true
@@ -130,14 +130,14 @@ func dots(quit chan bool) {
 			return
 		default:
 			time.Sleep(time.Second)
-			fmt.Print(".")
+//			fmt.Print(".")
 		}
 	}
 }
 
 func showUser(user *speedtest.User) {
 	if user.IP != "" {
-		fmt.Printf("Testing From IP: %s\n", user.String())
+		fmt.Printf("From IP: %s\n", user.String())
 	}
 }
 
@@ -150,8 +150,10 @@ func showServerList(serverList speedtest.ServerList) {
 
 func showServer(s *speedtest.Server) {
 	fmt.Printf(" \n")
-	fmt.Printf("Target Server: [%4s] %8.2fkm ", s.ID, s.Distance)
-	fmt.Printf(s.Name + " (" + s.Country + ") by " + s.Sponsor + "\n")
+//	fmt.Printf("Target Server: [%4s] %8.2fkm ", s.ID, s.Distance)
+//	fmt.Printf(s.Name + " (" + s.Country + ") by " + s.Sponsor + "\n")
+	fmt.Printf("Target: s.Sponsor + "-" + s.Name + " (" + s.Country + ") " %8.2fkm ", s.Distance "\n")
+
 }
 
 func showLatencyResult(server *speedtest.Server) {
