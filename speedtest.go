@@ -164,8 +164,10 @@ func showLatencyResult(server *speedtest.Server) {
 
 // ShowResult : show testing result
 func showServerResult(server *speedtest.Server) {
+	fmt.Printf("-----------------------------------------\n")
 	fmt.Printf("Download: %5.2f Mbit/s\n", server.DLSpeed)
 	fmt.Printf("Upload: %5.2f Mbit/s\n\n", server.ULSpeed)
+	fmt.Printf("Jika error, silahkan ulangi beberapa saat lagi.\n")
 	valid := server.CheckResultValid()
 	if !valid {
 		fmt.Println("Warning: Result seems to be wrong. Please speedtest again.")
