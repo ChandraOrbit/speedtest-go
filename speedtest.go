@@ -100,7 +100,7 @@ func startTest(servers speedtest.Servers, savingMode bool, jsonOutput bool) {
 func testDownload(server *speedtest.Server, savingMode bool) error {
 	quit := make(chan bool)
 //	fmt.Printf("Download Test: ")
-	go dots(quit)
+//	go dots(quit)
 	err := server.DownloadTest(savingMode)
 	quit <- true
 	if err != nil {
@@ -113,7 +113,7 @@ func testDownload(server *speedtest.Server, savingMode bool) error {
 func testUpload(server *speedtest.Server, savingMode bool) error {
 	quit := make(chan bool)
 //	fmt.Printf("Upload Test: ")
-	go dots(quit)
+//	go dots(quit)
 	err := server.UploadTest(savingMode)
 	quit <- true
 	if err != nil {
@@ -153,7 +153,7 @@ func showServer(s *speedtest.Server) {
 //	fmt.Printf("Target Server: [%4s] %8.2fkm ", s.ID, s.Distance)
 //	fmt.Printf(s.Name + " (" + s.Country + ") by " + s.Sponsor + "\n")
 	fmt.Printf("To Server: "+ s.Sponsor + "-" + s.Name + " (" + s.Country + ") \n")
-	fmt.Printf("Distance: %8.2fKm [IDs: %4s] ", s.Distance, s.ID)
+	fmt.Printf("Distance: %8.2fKm [IDs: %4s] \n", s.Distance, s.ID)
 }
 
 func showLatencyResult(server *speedtest.Server) {
