@@ -152,8 +152,8 @@ func showServer(s *speedtest.Server) {
 	fmt.Printf(" \n")
 //	fmt.Printf("Target Server: [%4s] %8.2fkm ", s.ID, s.Distance)
 //	fmt.Printf(s.Name + " (" + s.Country + ") by " + s.Sponsor + "\n")
-	fmt.Printf("Target: "+ s.Sponsor + "-" + s.Name + " (" + s.Country + ") ")
-	fmt.Printf("Distance [IDs]: %8.2fKm [%4s] \n", s.Distance, s.ID)
+	fmt.Printf("To Server: "+ s.Sponsor + "-" + s.Name + " (" + s.Country + ") \n")
+	fmt.Printf("Distance: %8.2fKm [IDs: %4s] ", s.Distance, s.ID)
 }
 
 func showLatencyResult(server *speedtest.Server) {
@@ -162,7 +162,6 @@ func showLatencyResult(server *speedtest.Server) {
 
 // ShowResult : show testing result
 func showServerResult(server *speedtest.Server) {
-//	fmt.Printf(" \n")
 	fmt.Printf("Download: %5.2f Mbit/s\n", server.DLSpeed)
 	fmt.Printf("Upload: %5.2f Mbit/s\n\n", server.ULSpeed)
 	valid := server.CheckResultValid()
