@@ -98,7 +98,7 @@ func (s *Server) UploadTest(savingMode bool) error {
 	weight := 0
 	skip := false
 	if savingMode {
-		workload = 3
+		workload = 1
 		weight = 7
 	} else if 10.0 < wuSpeed {
 		workload = 16
