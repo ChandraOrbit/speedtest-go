@@ -112,7 +112,7 @@ func testDownload(server *speedtest.Server, savingMode bool) error {
 
 func testUpload(server *speedtest.Server, savingMode bool) error {
 //	quit := make(chan bool)
-	fmt.Printf("Result Down/Up")
+	fmt.Printf("TEST RESULTS")
 //	go dots(quit)
 	err := server.UploadTest(savingMode)
 //	quit <- true
@@ -167,8 +167,8 @@ func showServerResult(server *speedtest.Server) {
 	fmt.Printf("-------------------------\n")
 	fmt.Printf("Download: %5.2f Mbit/s\n", server.DLSpeed)
 	fmt.Printf("Upload: %5.2f Mbit/s\n", server.ULSpeed)
-	fmt.Printf("\n")
-	fmt.Printf("Jika error, silahkan ulangi beberapa saat lagi.\n")
+	fmt.Printf("-------------------------\n")
+	fmt.Printf("If an Error occurs, please try again in a few moments.\n")
 	valid := server.CheckResultValid()
 	if !valid {
 		fmt.Println("Warning: Result seems to be wrong. Please speedtest again.")
