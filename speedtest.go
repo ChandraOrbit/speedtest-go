@@ -106,7 +106,7 @@ func testDownload(server *speedtest.Server, savingMode bool) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println()
+//	fmt.Println()
 	return err
 }
 
@@ -119,7 +119,7 @@ func testUpload(server *speedtest.Server, savingMode bool) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println()
+//	fmt.Println()
 	return nil
 }
 
@@ -137,6 +137,8 @@ func dots(quit chan bool) {
 
 func showUser(user *speedtest.User) {
 	if user.IP != "" {
+		fmt.Printf("SIMPLE SPEEDTEST\n")
+		fmt.Printf("===============\n")
 		fmt.Printf("From IP: %s", user.String())
 	}
 }
