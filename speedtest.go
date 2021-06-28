@@ -98,11 +98,11 @@ func startTest(servers speedtest.Servers, savingMode bool, jsonOutput bool) {
 }
 
 func testDownload(server *speedtest.Server, savingMode bool) error {
-//	quit := make(chan bool)
-//	fmt.Printf("Download Test: ")
-//	go dots(quit)
+	quit := make(chan bool)
+	fmt.Printf("Start Download")
+	go dots(quit)
 	err := server.DownloadTest(savingMode)
-//	quit <- true
+	quit <- true
 	if err != nil {
 		return err
 	}
@@ -111,11 +111,11 @@ func testDownload(server *speedtest.Server, savingMode bool) error {
 }
 
 func testUpload(server *speedtest.Server, savingMode bool) error {
-//	quit := make(chan bool)
-//	fmt.Printf("Upload Test: ")
-//	go dots(quit)
+	quit := make(chan bool)
+	fmt.Printf("Start Upload")
+	go dots(quit)
 	err := server.UploadTest(savingMode)
-//	quit <- true
+	quit <- true
 	if err != nil {
 		return err
 	}
@@ -123,22 +123,22 @@ func testUpload(server *speedtest.Server, savingMode bool) error {
 	return nil
 }
 
-//func dots(quit chan bool) {
-//	for {
-//		select {
-//		case <-quit:
-//			return
-//		default:
-//			time.Sleep(time.Second)
-//			fmt.Print(".")
-//		}
-//	}
-//}
+func dots(quit chan bool) {
+	for {
+		select {
+		case <-quit:
+			return
+		default:
+			time.Sleep(time.Second)
+			fmt.Print(".")
+		}
+	}
+}
 
 func showUser(user *speedtest.User) {
 	if user.IP != "" {
 		fmt.Printf("SIMPLE SPEEDTEST\n")
-		fmt.Printf("===============\n")
+		fmt.Printf("================\n")
 		fmt.Printf("From IP: %s", user.String())
 	}
 }
