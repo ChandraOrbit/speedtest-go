@@ -98,7 +98,7 @@ func startTest(servers speedtest.Servers, savingMode bool, jsonOutput bool) {
 }
 
 func testDownload(server *speedtest.Server, savingMode bool) error {
-	quit := make(chan bool)
+//	quit := make(chan bool)
 //	fmt.Printf("Download Test: ")
 //	go dots(quit)
 	err := server.DownloadTest(savingMode)
@@ -111,7 +111,7 @@ func testDownload(server *speedtest.Server, savingMode bool) error {
 }
 
 func testUpload(server *speedtest.Server, savingMode bool) error {
-	quit := make(chan bool)
+//	quit := make(chan bool)
 //	fmt.Printf("Upload Test: ")
 //	go dots(quit)
 	err := server.UploadTest(savingMode)
@@ -123,17 +123,17 @@ func testUpload(server *speedtest.Server, savingMode bool) error {
 	return nil
 }
 
-func dots(quit chan bool) {
-	for {
-		select {
-		case <-quit:
-			return
-		default:
-			time.Sleep(time.Second)
+//func dots(quit chan bool) {
+//	for {
+//		select {
+//		case <-quit:
+//			return
+//		default:
+//			time.Sleep(time.Second)
 //			fmt.Print(".")
-		}
-	}
-}
+//		}
+//	}
+//}
 
 func showUser(user *speedtest.User) {
 	if user.IP != "" {
