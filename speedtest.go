@@ -26,7 +26,7 @@ type fullOutput struct {
 type outputTime time.Time
 
 func main() {
-	kingpin.Version("1.1.2a")
+	kingpin.Version("1.1.2-beta")
 	kingpin.Parse()
 
 	user, err := speedtest.FetchUserInfo()
@@ -164,7 +164,7 @@ func showLatencyResult(server *speedtest.Server) {
 
 // ShowResult : show testing result
 func showServerResult(server *speedtest.Server) {
-	fmt.Printf("-------------------------\n")
+	fmt.Printf("-------------\n")
 	fmt.Printf("Download: %5.2f Mbit/s\n", server.DLSpeed)
 	fmt.Printf("Upload: %5.2f Mbit/s\n", server.ULSpeed)
 	fmt.Printf("-------------------------\n")
