@@ -101,9 +101,8 @@ func testDownload(server *speedtest.Server, savingMode bool) error {
 	quit := make(chan bool)
 //	fmt.Printf("Download Test: ")
 //	go dots(quit)
-	quit
 	err := server.DownloadTest(savingMode)
-	quit <- true
+//	quit <- true
 	if err != nil {
 		return err
 	}
@@ -115,9 +114,8 @@ func testUpload(server *speedtest.Server, savingMode bool) error {
 	quit := make(chan bool)
 //	fmt.Printf("Upload Test: ")
 //	go dots(quit)
-	quit
 	err := server.UploadTest(savingMode)
-	quit <- true
+//	quit <- true
 	if err != nil {
 		return err
 	}
