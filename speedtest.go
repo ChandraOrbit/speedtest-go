@@ -152,7 +152,8 @@ func showServer(s *speedtest.Server) {
 	fmt.Printf(" \n")
 //	fmt.Printf("Target Server: [%4s] %8.2fkm ", s.ID, s.Distance)
 //	fmt.Printf(s.Name + " (" + s.Country + ") by " + s.Sponsor + "\n")
-	fmt.Printf("Target: "+ s.Sponsor + "-" + s.Name + " (" + s.Country + ") ""%8.2fKm \n", s.Distance)
+	fmt.Printf("Target: "+ s.Sponsor + "-" + s.Name + " (" + s.Country + ") ")
+	fmt.Printf("Distance [IDs]: %8.2fKm [%4s] \n", s.Distance, s.ID)
 }
 
 func showLatencyResult(server *speedtest.Server) {
