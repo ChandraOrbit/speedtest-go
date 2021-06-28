@@ -137,7 +137,7 @@ func dots(quit chan bool) {
 
 func showUser(user *speedtest.User) {
 	if user.IP != "" {
-		fmt.Printf("From IP: %s\n", user.String())
+		fmt.Printf("From IP: %s", user.String())
 	}
 }
 
@@ -152,9 +152,7 @@ func showServer(s *speedtest.Server) {
 	fmt.Printf(" \n")
 //	fmt.Printf("Target Server: [%4s] %8.2fkm ", s.ID, s.Distance)
 //	fmt.Printf(s.Name + " (" + s.Country + ") by " + s.Sponsor + "\n")
-	fmt.Printf("Target: "+ s.Sponsor + "-" + s.Name + " (" + s.Country + ") ")
-	fmt.Printf("%8.2fKm \n", s.Distance)
-
+	fmt.Printf("Target: "+ s.Sponsor + "-" + s.Name + " (" + s.Country + ") ""%8.2fKm \n", s.Distance)
 }
 
 func showLatencyResult(server *speedtest.Server) {
@@ -163,8 +161,7 @@ func showLatencyResult(server *speedtest.Server) {
 
 // ShowResult : show testing result
 func showServerResult(server *speedtest.Server) {
-	fmt.Printf(" \n")
-
+//	fmt.Printf(" \n")
 	fmt.Printf("Download: %5.2f Mbit/s\n", server.DLSpeed)
 	fmt.Printf("Upload: %5.2f Mbit/s\n\n", server.ULSpeed)
 	valid := server.CheckResultValid()
