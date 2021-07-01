@@ -10,7 +10,7 @@
 # ------------------------
 # - sudo apt install upx
 # - cp /usr/bin/upx /path/to/openwrt/staging_dir/host/bin/
-# - cp /usr/bin/upx-ucl /path/toopenwrt/staging_dir/host/bin/
+# - cp /usr/bin/upx-ucl /path/to/openwrt/staging_dir/host/bin/
 # - mkdir /path/to/openwrt/package/speedtest-go
 # - curl https://raw.githubusercontent.com/ChandraOrbit/speedtest-go/master/Makefile_mipsel_24kc -o /path/to/openwrt/package/speedtest-go
 # - ./script/feeds update -a
