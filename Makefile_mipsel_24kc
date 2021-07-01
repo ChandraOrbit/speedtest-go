@@ -1,0 +1,77 @@
+#
+# Copyright (C) 2021 ImmortalWrt
+# <https://project-openwrt.eu.org>
+#
+# This is free software, licensed under the GNU General Public License v3.
+# See /LICENSE for more information.
+#
+# linux/Ubuntu --> openwrt
+# - sudo apt install ipx
+# - cp /usr/bin/upx /path/to/openwrt/staging_dir/host/bin/
+# - cp /usr/bin/upx-ucl /path/toopenwrt/staging_dir/host/bin/
+# - cd /path/to/openwrt/package
+# - mkdir speedtest-go
+# - cd speedtest-go
+# - curl -OL https://raw.githubusercontent.com/ChandraOrbit/speedtest-go/master/Makefile_mipsel_24kc Makefile
+# - ./script/feeds update -a
+# - ./script/feeds install -a
+# - make menuconfig ==> # Network --> speedtest-go, For upx compress support you need to have upx/ucl in your toolchain.
+# - make package/speedtest-go/complie V=99
+# - make package/speedtest-go/install V=99
+# - scp bin/package/<arch>/base/speedtest-go*.ipk root@router:/tmp
+
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=speedtest-go
+PKG_VERSION:=1.1.2-beta
+PKG_RELEASE:=1
+
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://codeload.github.com/ChandraOrbit/speedtest-go/tar.gz/v$(PKG_VERSION)?
+PKG_HASH:=470d233f43ba0e6d864a9e0c83f822b50b3e2e00e4d1768bed0b8c75b4edd2de
+
+PKG_LICENSE:=MIT
+PKG_LICENSE_FILES:=LICENSE
+PKG_MAINTAINER:=Jekseparo <orbitsolusi@gmail.com>
+
+PKG_BUILD_DEPENDS:=golang/host
+PKG_BUILD_PARALLEL:=1
+PKG_USE_MIPS16:=0
+
+GO_PKG:=github.com/showwin/speedtest-go
+GO_PKG_LDFLAGS:=-s -w
+
+include $(INCLUDE_DIR)/package.mk
+include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+
+define Package/speedtest-go/config
+config SPEEDTEST_GO_COMPRESS_UPX
+	bool "Compress executable files with UPX"
+	default n
+endef
+
+define Package/speedtest-go
+	SECTION:=net
+	CATEGORY:=Network
+	TITLE:=Self-contained Ookla speetest tool written in golang
+	URL:=https://github.com/showwin/speedtest-go
+	DEPENDS:=$(GO_ARCH_DEPENDS) +ca-bundle
+endef
+
+define Package/speedtest-go/description
+	A self-contained Ookla speetest tool written in golang.
+endef
+
+define Build/Compile
+	$(call GoPackage/Build/Compile)
+ifneq ($(CONFIG_SPEEDTEST_GO_COMPRESS_UPX),)
+	$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/speedtest-go
+endif
+endef
+
+define Package/speedtest-go/install
+	$(call GoPackage/Package/Install/Bin,$(1))
+endef
+
+$(eval $(call GoBinPackage,speedtest-go))
+$(eval $(call BuildPackage,speedtest-go))
