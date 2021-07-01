@@ -5,20 +5,22 @@
 # This is free software, licensed under the GNU General Public License v3.
 # See /LICENSE for more information.
 #
-# linux/Ubuntu --> openwrt
-# - sudo apt install ipx
+# ==================================
+# Cross-Compile on Openwrt based Ubuntu
+# ------------------------
+# - sudo apt install upx
 # - cp /usr/bin/upx /path/to/openwrt/staging_dir/host/bin/
 # - cp /usr/bin/upx-ucl /path/toopenwrt/staging_dir/host/bin/
-# - cd /path/to/openwrt/package
-# - mkdir speedtest-go
-# - cd speedtest-go
-# - curl -OL https://raw.githubusercontent.com/ChandraOrbit/speedtest-go/master/Makefile_mipsel_24kc Makefile
+# - mkdir /path/to/openwrt/package/speedtest-go
+# - curl https://raw.githubusercontent.com/ChandraOrbit/speedtest-go/master/Makefile_mipsel_24kc -o /path/to/openwrt/package/speedtest-go
 # - ./script/feeds update -a
 # - ./script/feeds install -a
 # - make menuconfig ==> # Network --> speedtest-go, For upx compress support you need to have upx/ucl in your toolchain.
 # - make package/speedtest-go/complie V=99
 # - make package/speedtest-go/install V=99
 # - scp bin/package/<arch>/base/speedtest-go*.ipk root@router:/tmp
+# - opkg install /tmp/*.ipk
+# ==================================
 
 include $(TOPDIR)/rules.mk
 
@@ -32,8 +34,7 @@ PKG_HASH:=470d233f43ba0e6d864a9e0c83f822b50b3e2e00e4d1768bed0b8c75b4edd2de
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
-PKG_MAINTAINER:=Jekseparo <orbitsolusi@gmail.com>
-
+PKG_MAINTAINER:=https://github.com/ChandraOrbit
 PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
