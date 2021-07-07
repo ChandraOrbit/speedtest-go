@@ -59,5 +59,6 @@ func FetchUserInfoContext(ctx context.Context) (*User, error) {
 
 // String representation of User
 func (u *User) String() string {
-	return fmt.Sprintf("%s, (%s) [%s, %s]", u.IP, u.Isp, u.Lat, u.Lon)
+// 	return fmt.Sprintf("%s, (%s) [%s, %s]", u.IP, u.Isp, u.Lat, u.Lon)	
+	return fmt.Sprintf("%s, (%s)", u.IP, u.Isp)
 }
